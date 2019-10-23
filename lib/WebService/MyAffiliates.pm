@@ -94,6 +94,15 @@ sub get_user_transactions {    ## no critic (ArgUnpacking)
     return $self->request($url->to_string);
 }
 
+sub get_customers {
+    my $self = shift;
+    my %args = @_ % 2 ? %{$_[0]} : @_;
+
+    my $url = Mojo::URL->new('/feeds.php?FEED_ID=10');
+    $url->query(\%args) if %args;
+    return $self->request($url->to_string);
+}
+
 sub request {
     my ($self, $url, $method, %params) = @_;
 
