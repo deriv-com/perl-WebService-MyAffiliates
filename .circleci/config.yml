@@ -16,7 +16,7 @@ jobs:
           command: cpanm --quiet --notest $(dzil authordeps --missing)
       - run:
           name: Install distribution deps
-          command: cpanm -v --notest $(dzil listdeps --author --missing)
+          command: cpanm --quiet --notest $(dzil listdeps --author --missing)
       - run:
           name: Run smoke test
           command: dzil smoke --release --author
