@@ -34,7 +34,7 @@ jobs:
           source /etc/profile.d/perl5.sh
           dzil smoke --release --author && dzil cover -test && dzil xtest
         name: Run test
-    working_directory: /home/git/regentmarkets/perl-Brands
+    working_directory: /home/git/binary-com/perl-WebService-MyAffiliates
 version: 2
 workflows:
   version: 2
