@@ -8,6 +8,7 @@ use Carp;
 use Mojo::UserAgent;
 use Mojo::Util qw(b64_encode url_escape);
 use XML::Simple 'XMLin'; ## no critic
+use Future::AsyncAwait;
 
 use vars qw/$errstr/;
 sub errstr { return $errstr }
@@ -29,7 +30,7 @@ sub new {    ## no critic (ArgUnpacking)
     return bless \%args, $class;
 }
 
-sub __ua {
+async sub __ua {
     my $self = shift;
 
     return $self->{ua} if exists $self->{ua};
@@ -109,12 +110,12 @@ sub get_customers {    ## no critic (ArgUnpacking)
     return $customers;
 }
 
-sub request {
+async sub request {
     my ($self, $url, $method, %params) = @_;
 
     $method ||= 'GET';
 
-    my $ua     = $self->__ua;
+    my $ua     = await $self->__ua;
     my $header = {Authorization => 'Basic ' . b64_encode($self->{user} . ':' . $self->{pass}, '')};
     my @extra  = %params ? (form => \%params) : ();
     my $tx     = $ua->build_tx($method => $self->{host} . $url => $header => @extra);
@@ -134,7 +135,7 @@ sub request {
 }
 
 ## un-documented helper
-sub get_affiliate_id_from_token {
+async sub get_affiliate_id_from_token {
     my ($self, $token) = @_;
 
     $token or croak 'Must pass a token to get_affiliate_id_from_token.';
