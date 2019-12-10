@@ -2,7 +2,6 @@ use strict;
 use Test::More;
 use Test::Exception;
 use WebService::MyAffiliates;
-use Future::AsyncAwait;
 
 my $aff = WebService::MyAffiliates->new(
     user => 'user',
