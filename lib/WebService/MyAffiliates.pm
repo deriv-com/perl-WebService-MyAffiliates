@@ -30,7 +30,7 @@ sub new {    ## no critic (ArgUnpacking)
     return bless \%args, $class;
 }
 
-sub __ua {
+async sub __ua {
     my $self = shift;
 
     return $self->{ua} if exists $self->{ua};
@@ -110,12 +110,12 @@ sub get_customers {    ## no critic (ArgUnpacking)
     return $customers;
 }
 
-sub request {
+async sub request {
     my ($self, $url, $method, %params) = @_;
 
     $method ||= 'GET';
 
-    my $ua     = $self->__ua;
+    my $ua     = await $self->__ua;
     my $header = {Authorization => 'Basic ' . b64_encode($self->{user} . ':' . $self->{pass}, '')};
     my @extra  = %params ? (form => \%params) : ();
     my $tx     = $ua->build_tx($method => $self->{host} . $url => $header => @extra);
