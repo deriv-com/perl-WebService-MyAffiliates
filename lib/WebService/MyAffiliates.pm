@@ -61,6 +61,18 @@ sub get_user {
     return $user->{USER};
 }
 
+sub get_users_by_variable {
+    my $self = shift;
+    my %args = @_ % 2 ? %{$_[0]} : @_;
+
+    $args{VARIABLE_NAME} or croak "VARIABLE_NAME is required.";
+    $args{VARIABLE_VALUE} or croak "VARIABLE_VALUE is required.";
+
+    my $url = Mojo::URL->new('/feeds.php?FEED_ID=1');
+    $url->query(\%args);
+    return $self->request($url->to_string);
+}
+
 ## https://myaffiliates.atlassian.net/wiki/display/PUB/Feed+4%3A+Decode+Token
 sub decode_token {
     my $self = shift;
