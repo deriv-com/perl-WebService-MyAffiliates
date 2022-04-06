@@ -165,6 +165,29 @@ sub get_affiliate_id_from_token {
     return $token_info->{TOKEN}->{USER_ID};
 }
 
+=head2 get_affiliate_details
+
+Get affiliate detail from user token
+
+=over 4
+
+=item * C<token> - token to get detail from
+
+=back
+
+Returns token_info hash
+
+=cut
+
+sub get_affiliate_details {
+    my ($self, $token) = @_;
+
+    croak 'Must pass a token to get_affiliate_email_from_token.' unless $token;
+
+    my $token_info = $self->decode_token($token) or return;
+    return $token_info;
+}
+
 1;
 __END__
 
