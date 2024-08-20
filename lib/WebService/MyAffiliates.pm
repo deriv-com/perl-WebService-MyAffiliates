@@ -26,7 +26,7 @@ sub new {    ## no critic (ArgUnpacking)
     $args{host} = 'http://' . $args{host} unless $args{host} =~ m{^https?\://};
     $args{host} =~ s{/$}{};
 
-    $args{timeout} ||= 300; # for HTTP::Tiny timeout
+    $args{timeout} ||= 300;    # for HTTP::Tiny timeout
 
     return bless \%args, $class;
 }
@@ -120,6 +120,8 @@ sub get_customers {    ## no critic (ArgUnpacking)
 
     my $url = Mojo::URL->new('/feeds.php?FEED_ID=10');
     $url->query(\%args) if %args;
+
+    print "string " . $url->to_string . "\n";
     my $res = $self->request($url->to_string);
 
     my $customers =
