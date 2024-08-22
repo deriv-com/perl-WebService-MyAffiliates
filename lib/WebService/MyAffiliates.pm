@@ -190,6 +190,7 @@ sub get_affiliate_details {
 
 sub reset_errstr {
     $errstr = '';
+    return;
 }
 
 1;
