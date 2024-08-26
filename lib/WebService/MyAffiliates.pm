@@ -121,7 +121,6 @@ sub get_customers {    ## no critic (ArgUnpacking)
     my $url = Mojo::URL->new('/feeds.php?FEED_ID=10');
     $url->query(\%args) if %args;
 
-    print "string " . $url->to_string . "\n";
     my $res = $self->request($url->to_string);
 
     my $customers =
