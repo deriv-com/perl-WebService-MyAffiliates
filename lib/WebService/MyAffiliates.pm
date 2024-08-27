@@ -150,7 +150,7 @@ sub request {
         return XMLin($response->{content});
     }
 
-    $errstr = $response->{content};
+    $errstr = $response->{reason};
     return;
 }
 
