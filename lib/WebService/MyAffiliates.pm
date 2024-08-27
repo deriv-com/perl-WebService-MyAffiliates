@@ -142,7 +142,7 @@ sub request {
     my $response  = $http_tiny->get($self->{host} . $url, {headers => $header});
 
     unless ($response->{success}) {
-        $errstr = $response->{content};
+        $errstr = $response->{reason};
         return;
     }
 
@@ -150,7 +150,7 @@ sub request {
         return XMLin($response->{content});
     }
 
-    $errstr = $response->{reason};
+    $errstr = $response->{content};
     return;
 }
 
