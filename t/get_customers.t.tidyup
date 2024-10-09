@@ -20,19 +20,19 @@ $mock_http_tiny->mock(
     sub {
 
         return +{
-            'headers' => { 'content-type' => 'text/xml' },
+            'headers' => {'content-type' => 'text/xml'},
             'success' => 1,
             'content' => '<PLAYERS><PLAYER AFFILIATE_ID="1234"/></PLAYERS>'
         };
 
-    }
-);
+    });
 
-my $args = { 'AFFILIATE_ID' => '1234', };
+my $args = {
+    'AFFILIATE_ID' => '1234',
+};
 
 my $res = $aff->get_customers($args);
-is( $res->[0]->{AFFILIATE_ID},
-    '1234', 'Affiliate customer is retrieved correctly' );
+is($res->[0]->{AFFILIATE_ID}, '1234', 'Affiliate customer is retrieved correctly');
 
 done_testing();
 
