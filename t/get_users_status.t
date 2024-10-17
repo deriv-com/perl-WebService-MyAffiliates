@@ -20,7 +20,7 @@ my $aff = WebService::MyAffiliates->new(
 my $user_info = $aff->get_users_status_by_affiliate_id(2);
 
 is( $user_info->{ID}, 2 );
-is( $user_info->{STATUS}, 'CLOSED' );
+is( $user_info->{STATUS}, 'denied' );
 ok( $user_info->{SUBSCRIPTIONS} );
 ok( $user_info->{USER_VARIABLES} );
 
