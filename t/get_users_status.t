@@ -17,12 +17,10 @@ my $aff = WebService::MyAffiliates->new(
     host => $ENV{MYAFFILIATES_HOST}
 );
 
-my $user_info = $aff->get_user(2);
-
-# use Data::Dumper;
-# diag(Dumper(\$user_info));
+my $user_info = $aff->get_users_status_by_affiliate_id(2);
 
 is( $user_info->{ID}, 2 );
+is( $user_info->{STATUS}, 'denied' );
 ok( $user_info->{SUBSCRIPTIONS} );
 ok( $user_info->{USER_VARIABLES} );
 
