@@ -144,6 +144,8 @@ Returns a hashref with the details for the created account, in particular a nume
 
 ## request
 
+## reset\_errstr
+
 # AUTHOR
 
 Binary.com <fayland@binary.com>
