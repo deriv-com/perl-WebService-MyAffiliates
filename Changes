@@ -1,7 +1,6 @@
 Revision history for WebService-MyAffiliates
 
 {{$NEXT}}
-
         - Replace Mojo::UserAgent with HTTP::Tiny for stable API calls
 
 0.09      2022-11-13 08:12:28+00:00 UTC
