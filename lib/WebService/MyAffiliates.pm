@@ -2,7 +2,7 @@ package WebService::MyAffiliates;
 
 use strict;
 use warnings;
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use Carp;
 use Mojo::Util qw(b64_encode url_escape);
